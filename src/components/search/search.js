@@ -2,7 +2,7 @@ import { useState } from "react";
 import { AsyncPaginate } from "react-select-async-paginate";
 import { GEO_API_URL, geoApiOptions } from "../../api";
 
-const Search = ({ onSearchChange }) => {
+const Search = ({ onSearchChange, onLocationChage }) => {
   const [search, setSearch] = useState(null);
 
   const loadOptions = (inputValue) => {
@@ -35,7 +35,7 @@ const Search = ({ onSearchChange }) => {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
         // Do something with the coordinates
-        console.log(latitude);
+        onLocationChage([latitude, longitude]);
       },
       (error) => {
         console.error("Error getting location:", error);
